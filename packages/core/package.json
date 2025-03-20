@@ -1,0 +1,20 @@
+{
+  "name": "@micro-react/core",
+  "version": "0.0.0",
+  "author": "lihongyan",
+  "module": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "description": "description",
+  "license": "ISC",
+  "peerDependencies": {},
+  "scripts": {
+    "build": ""
+  },
+  "dependencies": {
+    "@micro-react/utils": "^0.0.0",
+    "@tanstack/react-query": "^4.22.0"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "@micro-react/config",
+  "version": "0.0.0",
+  "module": "index.js",
+  "types": "./react-app.d.ts",
+  "files": [
+    "lib"
+  ],
+  "description": "description",
+  "license": "ISC",
+  "peerDependencies": {},
+  "scripts": {},
+  "dependencies": {}
+}

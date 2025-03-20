@@ -1,0 +1,29 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+@import 'tailwindcss';
+
+.btn-primary {
+  @apply bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded;
+}
+.btn-secondary {
+  @apply bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded;
+}
+.card {
+  @apply bg-white rounded-lg shadow-md overflow-hidden;
+}
+.nav-link {
+  @apply text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium;
+}
+.nav-link-active {
+  @apply text-indigo-600 px-3 py-2 rounded-md text-sm font-medium;
+}

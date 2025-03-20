@@ -1,0 +1,29 @@
+{
+  "name": "@app/main",
+  "version": "0.0.0",
+  "author": "lihongyan",
+  "private": true,
+  "dependencies": {
+    "@micro-react/config": "^0.0.0",
+    "browser-md5-file": "1.1.1"
+  },
+  "peerDependencies": {},
+  "scripts": {
+    "analyze": "rspack build --analyze",
+    "start": "rspack serve",
+    "build": "rspack build"
+  },
+  "browserslist": {
+    "production": [
+      "Firefox >= 102",
+      "chrome >= 98",
+      "Edge >= 98",
+      "last 1 Safari major versions"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

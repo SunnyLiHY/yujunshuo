@@ -1,0 +1,5 @@
+// 使 loading 组件居中
+.Loading:global(.ant-spin-spinning) {
+  height: calc(100vh - var(--micro-main-base-top-nav-height, 82px)) !important;
+}
+

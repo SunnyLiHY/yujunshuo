@@ -1,0 +1,60 @@
+server {
+    listen 80;
+    server_name localhost;
+    root /usr/share/nginx/html;
+    gzip on;
+    gzip_min_length 2k;
+    gzip_buffers 4 16k;
+    gzip_http_version 1.0;
+    gzip_comp_level 3;
+    gzip_types text/plain application/javascript application/x-javascript text/css application/xml text/javascript application/x-httpd-php image/jpeg image/gif image/png;
+    gzip_vary on;
+    client_max_body_size 0;
+
+    location / {
+       root /usr/share/nginx/html;
+       index index.html;
+       try_files $uri $uri/  @router;
+       proxy_set_header X-Real-IP    $remote_addr;
+       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+       proxy_set_header X-NginX-Proxy true;
+       add_header 'Access-Control-Allow-Origin' *;
+       #允许请求的header
+       add_header 'Access-Control-Allow-Headers' *;
+       #允许带上cookie请求
+       add_header 'Access-Control-Allow-Credentials' 'true';
+       #允许请求的方法，比如 GET,POST,PUT,DELETE
+       add_header 'Access-Control-Allow-Methods' *;
+    }
+    location @router {
+      rewrite ^.*$ /index.html last;
+    }
+
+    location /${PROJECT_PATH}/ {
+       proxy_set_header X-Real-IP    $remote_addr;
+       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+       proxy_set_header X-NginX-Proxy true;
+       add_header 'Access-Control-Allow-Origin' *;
+       #允许请求的header
+       add_header 'Access-Control-Allow-Headers' *;
+       #允许带上cookie请求
+       add_header 'Access-Control-Allow-Credentials' 'true';
+       #允许请求的方法，比如 GET,POST,PUT,DELETE
+       add_header 'Access-Control-Allow-Methods' *;
+       proxy_pass  ${PROJECT_API};
+    }
+
+    location /sso-api {
+       rewrite ^/sso-api/(.*)$ ${SSO_API}$1 permanent;
+    }
+
+    location /gis-api {
+      proxy_pass  ${GIS_API};
+    }
+
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   html;
+    }
+}
+

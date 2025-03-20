@@ -1,0 +1,35 @@
+pipeline {
+  agent {
+    kubernetes {
+      inheritFrom 'nodejs base'
+      containerTemplate {
+        name 'nodejs'
+        image 'node:18.16'
+      }
+    }
+  }
+  stages {
+    stage('build & push') {
+      agent none
+      steps {
+        container('nodejs') {
+          sh 'scripts/build.sh'
+          sh '''#!/bin/bash
+            curl -fsSL "http://10.7.10.105:31879/oss-huawei-obs/app/frontend-script/build/uploadStaticResource.sh" | /bin/bash -s -- -dir=dist -path=micro-react18
+          '''
+        }
+      }
+    }
+  }
+  environment {
+    DOCKER_CREDENTIAL_ID = 'harbor-id'
+    GITHUB_CREDENTIAL_ID = 'github-id'
+    KUBECONFIG_CREDENTIAL_ID = 'kubeconfig'
+    REGISTRY = 'harbor.host.com'
+    DOCKERHUB_NAMESPACE = 'bdh'
+    GITHUB_ACCOUNT = 'chenliwei'
+    APP_NAME = 'micro-react18'
+    KS_SPACE = 'dev'
+    ALIAS_NAME = 'react18前端脚手架'
+  }
+}

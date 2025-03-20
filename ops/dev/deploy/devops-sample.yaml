@@ -1,0 +1,82 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kubesphere.io/alias-name: $ALIAS_NAME
+  labels:
+    app: kubesphere
+    component: $APP_NAME
+    tier: backend
+  name: $APP_NAME
+  namespace: $KS_SPACE
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 2
+  selector:
+    matchLabels:
+      app: kubesphere
+      component: $APP_NAME
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: kubesphere
+        component: $APP_NAME
+        tier: backend
+    spec:
+      containers:
+        - env:
+            - name: PROJECT_PATH
+              value: stage-api
+            - name: PROJECT_API
+              value: http://land-resource-api.dev/
+            - name: SSO_API
+              value: http://10.11.14.211:31084/
+            - name: GIS_API
+              value: http://10.11.13.182:8080/geoserver
+            - name: FDD_API
+              value: http://10.11.13.184:8989/
+            - name: FLOW_API
+              value: http://flow-webapp.dev/
+          image: $REGISTRY/$DOCKERHUB_NAMESPACE/$APP_NAME:$KS_SPACE-$BUILD_NUMBER
+          imagePullPolicy: Always
+          name: container-$APP_NAME
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 1
+              memory: 1Gi
+            requests:
+              cpu: 0.5
+              memory: 0.5Gi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubesphere.io/alias-name: $ALIAS_NAME-SVC
+  labels:
+    app: kubesphere
+    component: $APP_NAME
+  name: $APP_NAME
+  namespace: $KS_SPACE
+spec:
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 80
+      nodePort: 30748
+  selector:
+    app: kubesphere
+    component: $APP_NAME
+    tier: backend
+  sessionAffinity: None
+  type: NodePort
