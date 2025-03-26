@@ -120,7 +120,7 @@ const MentorDetailPage: React.FC = () => {
         {/* 标签页导航 */}
         <div className="border-b border-gray-200 mb-6">
           <nav className="-mb-px flex space-x-8">
-            {['intro', 'reviews', 'calendar'].map((tab) => (
+            {['intro', 'calendar', 'reviews'].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab as typeof activeTab)}
@@ -175,7 +175,7 @@ const MentorDetailPage: React.FC = () => {
                   <div key={index} className="mb-4">
                     <h3 className="font-medium mb-2">{day.date}</h3>
                     <div className="grid grid-cols-4 gap-2">
-                      {day.timeSlots.map((time: any, i: index) => (
+                      {day.timeSlots.map((time: any, i: number) => (
                         <button
                           key={i}
                           className="py-2 px-4 border border-gray-300 rounded-md text-sm hover:bg-gray-50"
