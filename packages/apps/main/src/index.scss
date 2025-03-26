@@ -10,6 +10,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+.bg-gray-500 {
+  background-color: rgba(0, 0, 0, 0.7) !important;
+}
+
 @import 'tailwindcss';
 
 .btn-primary {
@@ -27,3 +31,4 @@ code {
 .nav-link-active {
   @apply text-indigo-600 px-3 py-2 rounded-md text-sm font-medium;
 }
+

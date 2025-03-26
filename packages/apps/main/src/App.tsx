@@ -84,6 +84,7 @@ const App: React.FC = () => {
           colorError: '#FF0000',
           borderRadius: 12,
           colorBgMask: 'rgba(0,0,0,0.8)',
+          colorPrimary: '#4f39f6'
         },
       }}
       getPopupContainer={getPopupContainer}
