@@ -235,6 +235,9 @@ importers:
       browser-md5-file:
         specifier: 1.1.1
         version: 1.1.1
+      moment:
+        specifier: 2.30.1
+        version: 2.30.1
 
   packages/core:
     dependencies:
@@ -7755,6 +7758,10 @@ packages:
     dependencies:
       minimist: 1.2.8
     dev: true
+
+  /moment@2.30.1:
+    resolution: {integrity: sha512-uEmtNhbDOrWPFS+hdjFCBfy9f2YoyzRpwcl+DqpC6taX21FzsTLQVbMV/W7PzNSX6x/bhC1zA3c2UQ5NzH6how==}
+    dev: false
 
   /move-concurrently@1.0.1:
     resolution: {integrity: sha512-hdrFxZOycD/g6A6SoI2bB5NA/5NEqD0569+S47WZhPvm46sD50ZHdYaFmnua5lndde9rCHGjmfK7Z8BuCt/PcQ==}

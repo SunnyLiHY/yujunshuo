@@ -3,6 +3,9 @@ import { useParams } from 'react-router-dom';
 import { MentorDetail } from '../../types';
 import ExperienceSection from './Experience';
 import ReviewSection from './ReviewSection';
+import ServiceCard from './ServiceCard';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar, faStarHalfAlt } from '@fortawesome/free-solid-svg-icons';
 
 const MentorDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -11,104 +14,92 @@ const MentorDetailPage: React.FC = () => {
   // 模拟数据，实际应该从API获取
   const mentorDetail: MentorDetail = {
     id: 1,
-    name: "张明",
-    avatar: "https://randomuser.me/api/portraits/men/32.jpg",
-    company: "腾讯",
-    position: "产品经理",
+    name: '张明',
+    avatar: 'https://randomuser.me/api/portraits/men/32.jpg',
+    company: '腾讯',
+    position: '产品经理',
     rating: 4.5,
-    description: "5年产品经验，擅长用户增长和产品规划，曾负责多个千万级用户产品",
-    skills: ["产品规划", "用户增长", "数据分析"],
+    description: '5年产品经验，擅长用户增长和产品规划，曾负责多个千万级用户产品',
+    skills: ['产品规划', '用户增长', '数据分析'],
     price: 200,
     education: [
       {
         id: 1,
-        school: "北京大学",
-        degree: "硕士",
-        major: "计算机科学",
-        year: "2015-2018"
-      }
+        school: '北京大学',
+        degree: '硕士',
+        major: '计算机科学',
+        year: '2015-2018',
+      },
     ],
     experience: [
       {
         id: 1,
-        company: "腾讯",
-        position: "高级产品经理",
-        period: "2018-至今",
-        description: "负责社交产品的用户增长和产品规划，带领团队实现用户数量翻倍增长"
-      }
+        company: '腾讯',
+        position: '高级产品经理',
+        period: '2018-至今',
+        description: '负责社交产品的用户增长和产品规划，带领团队实现用户数量翻倍增长',
+      },
     ],
     services: [
       {
         id: 1,
-        title: "职业规划咨询",
-        description: "一对一职业发展规划指导，帮助你明确职业方向",
+        title: '职业规划咨询',
+        description: '一对一职业发展规划指导，帮助你明确职业方向',
         price: 200,
-        duration: 60
-      }
+        duration: 60,
+      },
     ],
     reviews: [
       {
         id: 1,
         user: {
-          name: "李华",
-          avatar: "https://randomuser.me/api/portraits/men/1.jpg"
+          name: '李华',
+          avatar: 'https://randomuser.me/api/portraits/men/1.jpg',
         },
         rating: 5,
-        content: "非常专业的指导，给了我很多实用的建议",
-        date: "2024-03-15"
-      }
+        content: '非常专业的指导，给了我很多实用的建议',
+        date: '2024-03-15',
+      },
     ],
     availability: [
       {
-        date: "2024-03-20",
-        timeSlots: ["10:00", "14:00", "16:00"]
-      }
-    ]
+        date: '2024-03-20',
+        timeSlots: ['10:00', '14:00', '16:00'],
+      },
+    ],
   };
 
   return (
-    <div className="bg-gray-50 min-h-screen">      
+    <div className="bg-gray-50 min-h-screen">
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* 基本信息卡片 */}
         <div className="bg-white rounded-lg shadow-md p-6 mb-6">
           <div className="flex items-start">
-            <img 
-              src={mentorDetail.avatar} 
-              alt={mentorDetail.name}
-              className="w-24 h-24 rounded-full"
-            />
+            <img src={mentorDetail.avatar} alt={mentorDetail.name} className="w-24 h-24 rounded-full" />
             <div className="ml-6 flex-1">
               <div className="flex justify-between items-start">
                 <div>
-                  <h1 className="text-2xl font-bold text-gray-900">
-                    {mentorDetail.name}
-                  </h1>
+                  <h1 className="text-2xl font-bold text-gray-900">{mentorDetail.name}</h1>
                   <p className="text-lg text-gray-600">
                     {mentorDetail.position} @ {mentorDetail.company}
                   </p>
                   <div className="mt-2 flex items-center">
-                    {[...Array(5)].map((_, i) => (
-                      <i
-                        key={i}
-                        className={`fas fa-star ${
-                          i < Math.floor(mentorDetail.rating)
-                            ? 'text-yellow-400'
-                            : i < mentorDetail.rating
-                            ? 'fas fa-star-half-alt text-yellow-400'
-                            : 'text-gray-300'
-                        }`}
-                      />
-                    ))}
-                    <span className="ml-2 text-gray-600">
-                      ({mentorDetail.rating})
-                    </span>
+                    {[...Array(5)].map(
+                      (_, i) =>
+                        i + 1 <= Math.ceil(mentorDetail.rating || 0) && (
+                          <FontAwesomeIcon
+                            key={i}
+                            icon={i + 1 <= (mentorDetail.rating || 0) ? faStar : faStarHalfAlt}
+                            className="text-yellow-400"
+                          />
+                        ),
+                    )}
+                    <span className="ml-2 text-gray-600">({mentorDetail.rating})</span>
                   </div>
                 </div>
-                <button className="btn-primary">
-                  预约咨询
-                </button>
+                {/* <button className="btn-primary">预约咨询</button> */}
               </div>
-              
+
               <div className="mt-4">
                 <p className="text-gray-600">{mentorDetail.description}</p>
                 <div className="mt-3 flex flex-wrap gap-2">
@@ -135,9 +126,11 @@ const MentorDetailPage: React.FC = () => {
                 onClick={() => setActiveTab(tab as typeof activeTab)}
                 className={`
                   py-4 px-1 border-b-2 font-medium text-sm
-                  ${activeTab === tab
-                    ? 'border-indigo-500 text-indigo-600'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'}
+                  ${
+                    activeTab === tab
+                      ? 'border-indigo-500 text-indigo-600'
+                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  }
                 `}
               >
                 {tab === 'intro' && '详细介绍'}
@@ -155,15 +148,17 @@ const MentorDetailPage: React.FC = () => {
             {activeTab === 'intro' && (
               <div className="space-y-6">
                 {/* 工作经历 */}
-                <ExperienceSection experiences={mentorDetail.experience || []}/>
-        
+                <ExperienceSection experiences={mentorDetail.experience || []} />
+
                 {/* 教育背景 */}
                 <section>
                   <h2 className="text-xl font-bold text-gray-900 mb-4">教育背景</h2>
-                  {mentorDetail.education.map(edu => (
+                  {mentorDetail.education.map((edu) => (
                     <div key={edu.id} className="mb-4">
                       <h3 className="font-medium">{edu.school}</h3>
-                      <p className="text-gray-600">{edu.degree} · {edu.major}</p>
+                      <p className="text-gray-600">
+                        {edu.degree} · {edu.major}
+                      </p>
                       <p className="text-sm text-gray-500">{edu.year}</p>
                     </div>
                   ))}
@@ -171,9 +166,7 @@ const MentorDetailPage: React.FC = () => {
               </div>
             )}
 
-            {activeTab === 'reviews' && (
-              <ReviewSection reviews={mentorDetail.reviews || []}/>
-            )}
+            {activeTab === 'reviews' && <ReviewSection reviews={mentorDetail.reviews || []} />}
 
             {activeTab === 'calendar' && (
               <div className="bg-white rounded-lg p-6 border border-gray-200">
@@ -182,7 +175,7 @@ const MentorDetailPage: React.FC = () => {
                   <div key={index} className="mb-4">
                     <h3 className="font-medium mb-2">{day.date}</h3>
                     <div className="grid grid-cols-4 gap-2">
-                      {day.timeSlots.map((time, i) => (
+                      {day.timeSlots.map((time: any, i: index) => (
                         <button
                           key={i}
                           className="py-2 px-4 border border-gray-300 rounded-md text-sm hover:bg-gray-50"
@@ -201,24 +194,13 @@ const MentorDetailPage: React.FC = () => {
           <div className="col-span-1">
             <div className="bg-white rounded-lg shadow-md p-6 sticky top-6">
               <h2 className="text-xl font-bold text-gray-900 mb-4">咨询服务</h2>
-              {mentorDetail.services.map(service => (
-                <div key={service.id} className="mb-4 p-4 border border-gray-200 rounded-lg">
-                  <h3 className="font-medium">{service.title}</h3>
-                  <p className="text-sm text-gray-600 mt-1">{service.description}</p>
-                  <div className="mt-3 flex justify-between items-center">
-                    <div>
-                      <span className="text-lg font-bold text-indigo-600">
-                        ¥{service.price}
-                      </span>
-                      <span className="text-sm text-gray-500">
-                        /{service.duration}分钟
-                      </span>
-                    </div>
-                    <button className="btn-primary">
-                      立即预约
-                    </button>
-                  </div>
-                </div>
+              {mentorDetail.services.map((service) => (
+                <ServiceCard
+                  key={service.id}
+                  service={service}
+                  mentorName={mentorDetail.name}
+                  availability={mentorDetail.availability}
+                />
               ))}
             </div>
           </div>

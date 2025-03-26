@@ -87,6 +87,7 @@ export interface Education {
   year: string;
 }
 
+/** 工作经历对象 */
 export interface Experience {
   id: number;
   company: string;
@@ -114,7 +115,13 @@ export interface Review {
   date: string;
 }
 
-export interface Availability {
+/** 预约服务 */
+export interface TimeSlot {
+  start: string;
+  end: string;
+  available: boolean;
+}
+export interface DaySchedule {
   date: string;
-  timeSlots: string[];
+  timeSlots: TimeSlot[];
 }

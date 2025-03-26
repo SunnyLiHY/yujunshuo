@@ -4,7 +4,11 @@ import { Review } from '../../types';
 interface ReviewSectionProps {
   reviews: Review[];
 }
-
+/**
+ * 用户评价
+ * @param reviews 评价列表 
+ * @returns 
+ */
 const ReviewSection: React.FC<ReviewSectionProps> = ({ reviews }) => {
   return (
     <div className="space-y-6">

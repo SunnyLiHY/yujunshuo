@@ -4,7 +4,11 @@ import { Experience } from '../../types';
 interface ExperienceSectionProps {
   experiences: Experience[];
 }
-
+/**
+ * 工作经历
+ * @param experiences 工作经历列表 
+ * @returns 
+ */
 const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experiences }) => {
   return (
     <section>
