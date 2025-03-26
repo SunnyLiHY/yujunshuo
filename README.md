@@ -20,7 +20,7 @@ pnpm install
 
 # 启动应用
 pnpm start
-# 访问 http://10.11.14.211:30879/northern/dataList
+# 访问 http://localhost:8079/home
 
 # 根目录安装依赖
 pnpm add qss -W -D
