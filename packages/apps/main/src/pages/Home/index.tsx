@@ -231,9 +231,9 @@ const Home = () => {
           </div>
 
           <div className="mt-12 text-center">
-            <a href="register.html" className="btn-primary inline-block px-8 py-3 text-lg">
-              立即开始
-            </a>
+            <Link to="/register?role=seeker" className="btn-primary inline-block px-8 py-3 text-lg">
+            立即开始
+            </Link>
           </div>
         </div>
       </div>

@@ -59,7 +59,7 @@
     "react-router-dom": "^6.8.2",
     "sass": "^1.57.1",
     "sass-loader": "^13.3.1",
-    "sql-formatter": "^15.3.1",
+    "styled-components": "6.1.16",
     "turbo": "1.8.8",
     "typescript": "~5.0.4",
     "webpack-merge": "^5.10.0"

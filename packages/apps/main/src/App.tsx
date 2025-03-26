@@ -20,9 +20,11 @@ const queryClient = new QueryClient({
  */
 const Developing = lazy(() => import('./pages/Developing'));
 const Mentors = lazy(() => import('./pages/Mentors'));
+const MentorDetail = lazy(() => import('./pages/MentorDetail'));
 const Demands = lazy(() => import('./pages/Demands'));
 const About = lazy(() => import('./pages/About'));
 const Login = lazy(() => import('./pages/Login'));
+const ForgotPassword = lazy(() => import('./pages/Login/ForgetPassword'));
 const Register = lazy(() => import('./pages/Register'));
 const Home = lazy(() => import('./pages/Home'));
 
@@ -47,6 +49,8 @@ const router = createBrowserRouter(
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/mentor-detail/:id" element={<MentorDetail />} />
       </Route>
       <Route
         path="*"
