@@ -24,10 +24,10 @@ const Navbar = () => {
                 首页
               </Link>
               <Link to="/mentors" className={isActiveLink('/mentors') ? 'nav-link-active' : 'nav-link'}>
-                寻找引导者
+                引导者展示
               </Link>
               <Link to="/demands" className={isActiveLink('/demands') ? 'nav-link-active' : 'nav-link'}>
-                浏览需求
+                需求广场
               </Link>
               <Link to="/about" className={isActiveLink('/about') ? 'nav-link-active' : 'nav-link'}>
                 关于我们

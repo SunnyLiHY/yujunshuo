@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Input, Button, message, Checkbox, Row, Col } from 'antd';
+import { Form, Input, Button, message, Checkbox, Row, Col, Select } from 'antd';
 import { UserOutlined, LockOutlined, MailOutlined, PhoneOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -38,7 +38,7 @@ const RegisterPage: React.FC = () => {
       // 验证邮箱
       await form.validateFields(['email']);
       const email = form.getFieldValue('email');
-      
+
       // TODO: 调用发送验证码接口
       message.success(`验证码已发送至邮箱: ${email}`);
       startCountdown();
@@ -69,18 +69,12 @@ const RegisterPage: React.FC = () => {
           <p>请填写以下信息完成注册</p>
         </RegisterHeader>
 
-        <Form
-          form={form}
-          name="register"
-          onFinish={onFinish}
-          scrollToFirstError
-          size="large"
-        >
+        <Form form={form} name="register" onFinish={onFinish} scrollToFirstError size="large">
           <Form.Item
             name="username"
             rules={[
               { required: true, message: '请输入用户名' },
-              { min: 3, message: '用户名至少3个字符' }
+              { min: 3, message: '用户名至少3个字符' },
             ]}
           >
             <Input prefix={<UserOutlined />} placeholder="用户名" />
@@ -90,7 +84,7 @@ const RegisterPage: React.FC = () => {
             name="email"
             rules={[
               { required: true, message: '请输入邮箱' },
-              { type: 'email', message: '请输入有效的邮箱地址' }
+              { type: 'email', message: '请输入有效的邮箱地址' },
             ]}
           >
             <Input prefix={<MailOutlined />} placeholder="邮箱" />
@@ -100,17 +94,30 @@ const RegisterPage: React.FC = () => {
             name="phone"
             rules={[
               { required: true, message: '请输入手机号' },
-              { pattern: /^1[3-9]\d{9}$/, message: '请输入有效的手机号' }
+              { pattern: /^1[3-9]\d{9}$/, message: '请输入有效的手机号' },
             ]}
           >
             <Input prefix={<PhoneOutlined />} placeholder="手机号" />
+          </Form.Item>
+          <Form.Item name="ageRange" rules={[{ required: true, message: '请选择年龄段' }]}>
+            <Select
+              placeholder="请选择年龄段"
+              options={[
+                { label: '80后', value: '80' },
+                { label: '90后', value: '90' },
+                { label: '95后', value: '95' },
+                { label: '00后', value: '00' },
+                { label: '05后', value: '05' },
+                { label: '10后', value: '10' },
+              ]}
+            />
           </Form.Item>
 
           <Form.Item
             name="password"
             rules={[
               { required: true, message: '请输入密码' },
-              { min: 6, message: '密码至少6个字符' }
+              { min: 6, message: '密码至少6个字符' },
             ]}
           >
             <Input.Password prefix={<LockOutlined />} placeholder="密码" />
@@ -133,8 +140,10 @@ const RegisterPage: React.FC = () => {
           >
             <Input.Password prefix={<LockOutlined />} placeholder="确认密码" />
           </Form.Item>
-
-          <Form.Item>
+          <Form.Item name="nikename">
+            <Input prefix={<UserOutlined />} placeholder="昵称" />
+          </Form.Item>
+          {/* <Form.Item>
             <Row gutter={8}>
               <Col span={16}>
                 <Form.Item
@@ -155,16 +164,16 @@ const RegisterPage: React.FC = () => {
                 </Button>
               </Col>
             </Row>
-          </Form.Item>
+          </Form.Item> */}
 
           <Form.Item
             name="agreement"
             valuePropName="checked"
             rules={[
-              { 
+              {
                 validator: (_, value) =>
-                  value ? Promise.resolve() : Promise.reject(new Error('请阅读并同意用户协议')) 
-              }
+                  value ? Promise.resolve() : Promise.reject(new Error('请阅读并同意用户协议')),
+              },
             ]}
           >
             <Checkbox>
@@ -173,12 +182,7 @@ const RegisterPage: React.FC = () => {
           </Form.Item>
 
           <Form.Item>
-            <Button 
-              type="primary" 
-              htmlType="submit" 
-              block
-              loading={isLoading}
-            >
+            <Button type="primary" htmlType="submit" block loading={isLoading}>
               注册
             </Button>
           </Form.Item>

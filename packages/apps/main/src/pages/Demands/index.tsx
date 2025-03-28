@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { SearchFilter } from './SearchFilter';
-import { DemandList } from './DemandList';
 import { FilterOptions, FilterTag, NewDemand } from '../../types';
 import { PublishDemandModal } from './PublishDemandModal';
 import { message } from 'antd';
+import SearchBar from './SearchBar';
+import FilterSection from './SearchFilter';
+import { DemandList } from './DemandList';
 
 const DemandsPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [filterOptions, setFilterOptions] = useState<FilterOptions>({
+  const [filters, setFilters] = useState<FilterOptions>({
     position: '',
     status: '',
     budget: ''
@@ -16,18 +17,6 @@ const DemandsPage: React.FC = () => {
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
-  };
-
-  const handleFilterChange = (newFilters: FilterOptions) => {
-    setFilterOptions(newFilters);
-  };
-
-  const handleRemoveTag = (tagId: string) => {
-    setFilterTags(filterTags.filter(tag => tag.id !== tagId));
-  };
-
-  const handleClearAllTags = () => {
-    setFilterTags([]);
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -47,6 +36,10 @@ const DemandsPage: React.FC = () => {
     }
   };
 
+   const handleFilterChange = (newFilters: FilterOptions) => {
+      setFilters(newFilters);
+    };
+
   return (
     <div className="bg-gray-50 min-h-screen flex flex-col">
       <main className="flex-grow py-8">
@@ -58,19 +51,19 @@ const DemandsPage: React.FC = () => {
             </div>
             <button className="btn-primary" onClick={() => setIsModalOpen(true)}>发布需求</button>
           </div>
-
-          <SearchFilter 
-            onSearch={handleSearch}
-            filterOptions={filterOptions}
-            onFilterChange={handleFilterChange}
-            filterTags={filterTags}
-            onRemoveTag={handleRemoveTag}
-            onClearAllTags={handleClearAllTags}
-          />
+          <div className="mb-8">
+            <div className="bg-white rounded-lg shadow-md overflow-hidden p-6">
+              <SearchBar onSearch={handleSearch} />
+              <FilterSection 
+                filters={filters} 
+                onFilterChange={handleFilterChange} 
+              />
+            </div>
+          </div>
 
           <DemandList 
             searchQuery={searchQuery}
-            filterOptions={filterOptions}
+            filterOptions={filters}
             filterTags={filterTags}
           />
         </div>

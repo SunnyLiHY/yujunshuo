@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWeibo, faWeixin, faQq } from '@fortawesome/free-brands-svg-icons';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
@@ -26,24 +27,24 @@ const Navbar = () => {
             <h3 className="text-lg font-semibold mb-4">快速链接</h3>
             <ul className="space-y-2">
               <li>
-                <a href="index.html" className="text-gray-400 hover:text-white">
+                <Link to="/home" className="text-gray-400 hover:text-white">
                   首页
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="mentors.html" className="text-gray-400 hover:text-white">
-                  寻找引导者
-                </a>
+                <Link to="/mentors" className="text-gray-400 hover:text-white">
+                  引导者展示
+                </Link>
               </li>
               <li>
-                <a href="demands.html" className="text-gray-400 hover:text-white">
-                  浏览需求
-                </a>
+                <Link to="/demands" className="text-gray-400 hover:text-white">
+                  需求广场
+                </Link>
               </li>
               <li>
-                <a href="about.html" className="text-gray-400 hover:text-white">
+                <Link to="/about" className="text-gray-400 hover:text-white">
                   关于我们
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
