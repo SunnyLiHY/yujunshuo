@@ -3,7 +3,8 @@ import SearchBar from './SearchBar';
 import FilterSection from './FilterSection';
 import MentorList from './MentorList';
 import { MentorFilter } from '../../types';
-import { BecomeMentorModal } from './BecomeMentorModal';
+import { BecomeMentorModal } from './BecomeMentorModa1';
+// import { BecomeMentorModal } from './BecomeMentorModal1';
 
 const MentorsPage: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
