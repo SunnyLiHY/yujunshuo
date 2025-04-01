@@ -23,11 +23,11 @@ const Home = () => {
             连接在职学长学姐与在校学生，提供个性化的职业规划指导和经验分享。
           </p>
           <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-            <Link to="/register?role=seeker" className="btn-primary text-base sm:text-lg px-6 sm:px-8 py-3 text-center">
+            <Link to="/mentors" className="btn-primary text-base sm:text-lg px-6 sm:px-8 py-3 text-center">
               我是求学者
             </Link>
             <Link
-              to="/register?role=mentor"
+              to="/demands"
               className="bg-white text-indigo-600 hover:bg-gray-100 font-bold py-3 px-6 sm:px-8 rounded text-base sm:text-lg text-center"
             >
               我是引导者

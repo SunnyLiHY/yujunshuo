@@ -41,8 +41,10 @@ export interface ApplyOrder {
   introduction: string;
   price: number;
   availableTime: string[];
-  communicationMethod: string;
+  communicationMethod: 'video' | 'voice' | 'text';
   contactInfo: string;
+  paymentStatus?: 'pending' | 'paid' | 'failed';
+  transactionId?: string;
 }
 
 /** 引导者列表 */
@@ -76,7 +78,7 @@ export interface MentorDetail extends Mentor {
   experience: Experience[];
   services: Service[];
   reviews: Review[];
-  availability: Availability[];
+  availability: any[];
 }
 
 export interface Education {

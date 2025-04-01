@@ -32,6 +32,9 @@ const Navbar = () => {
               <Link to="/about" className={isActiveLink('/about') ? 'nav-link-active' : 'nav-link'}>
                 关于我们
               </Link>
+              <Link to="/personal" className={isActiveLink('/personal') ? 'nav-link-active' : 'nav-link'}>
+                个人中心
+              </Link>
             </div>
           </div>
 

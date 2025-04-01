@@ -27,6 +27,7 @@ const Login = lazy(() => import('./pages/Login'));
 const ForgotPassword = lazy(() => import('./pages/Login/ForgetPassword'));
 const Register = lazy(() => import('./pages/Register'));
 const Home = lazy(() => import('./pages/Home'));
+const PersonalCenter = lazy(() => import('./pages/PersonalCenter'));
 
 // 页面入口权限点
 // const DevelopingComposed = withAuth([''])(withJotai(Developing));
@@ -40,9 +41,9 @@ const basename = window.location.pathname.match(/^(\/.+?)\//)?.[1] ?? '';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="" element={<Navigate to="/index" replace />} />
+      <Route path="" element={<Navigate to="/home" replace />} />
       <Route path="/" element={<Layout />}>
-        <Route path="index" element={<Developing />} />
+        {/* <Route path="index" element={<Developing />} /> */}
         <Route path="/home" element={<Home />} />
         <Route path="/mentors" element={<Mentors />} />
         <Route path="/demands" element={<Demands />} />
@@ -51,6 +52,7 @@ const router = createBrowserRouter(
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/mentor-detail/:id" element={<MentorDetail />} />
+        <Route path="/personal" element={<PersonalCenter />} />
       </Route>
       <Route
         path="*"
