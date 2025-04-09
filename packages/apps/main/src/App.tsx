@@ -28,6 +28,8 @@ const ForgotPassword = lazy(() => import('./pages/Login/ForgetPassword'));
 const Register = lazy(() => import('./pages/Register'));
 const Home = lazy(() => import('./pages/Home'));
 const PersonalCenter = lazy(() => import('./pages/PersonalCenter'));
+const Question = lazy(() => import('./pages/Question'));
+const QuestionDetail = lazy(() => import('./pages/QuestionDetail'));
 
 // 页面入口权限点
 // const DevelopingComposed = withAuth([''])(withJotai(Developing));
@@ -53,6 +55,8 @@ const router = createBrowserRouter(
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/mentor-detail/:id" element={<MentorDetail />} />
         <Route path="/personal" element={<PersonalCenter />} />
+        <Route path="/questions" element={<Question />} />
+        <Route path="/questions/:id" element={<QuestionDetail />} />
       </Route>
       <Route
         path="*"

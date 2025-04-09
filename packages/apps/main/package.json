@@ -6,7 +6,8 @@
   "dependencies": {
     "@micro-react/config": "^0.0.0",
     "browser-md5-file": "1.1.1",
-    "moment": "2.30.1"
+    "moment": "2.30.1",
+    "react-scroll": "1.9.3"
   },
   "peerDependencies": {},
   "scripts": {
