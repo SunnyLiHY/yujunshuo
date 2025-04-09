@@ -29,6 +29,9 @@ const Navbar = () => {
               <Link to="/demands" className={isActiveLink('/demands') ? 'nav-link-active' : 'nav-link'}>
                 需求广场
               </Link>
+              <Link to="/questions" className={isActiveLink('/questions') ? 'nav-link-active' : 'nav-link'}>
+                人生疑问
+              </Link>
               <Link to="/about" className={isActiveLink('/about') ? 'nav-link-active' : 'nav-link'}>
                 关于我们
               </Link>
@@ -69,13 +72,19 @@ const Navbar = () => {
                 to="/mentors"
                 className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50"
               >
-                寻找引导者
+                引导者展示
               </Link>
               <Link
                 to="/mentors"
                 className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50"
               >
-                浏览需求
+                需求广场
+              </Link>
+              <Link
+                to="/questions"
+                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50"
+              >
+                人生疑问
               </Link>
               <Link
                 to="/about"
